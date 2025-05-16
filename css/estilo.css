@@ -10,9 +10,14 @@
     background-color: lightgrey;
     width: 150px;
     height: 200px;
-    border: 15px solid green;
+    border: 5px solid green;
     padding: 10px;
     margin: 20px;
+    border-radius: 50px;
+    transition: transform 0.3s ease;
+  }
+  .inicial:hover{
+    transform: translate(0px, -10px);
   }
   .acertou {
     text-align: center;
@@ -20,9 +25,11 @@
     background-color: LawnGreen;
     width: 150px;
     height: 200px;
-    border: 15px solid yellow;
+    border: 5px solid yellow;
     padding: 10px;
     margin: 20px;
+    border-radius: 50px;
+    font-size: 0px;
   }
   .errou {
     text-align: center;
@@ -30,7 +37,12 @@
     background-color: red;
     width: 150px;
     height: 200px;
-    border: 15px solid black;
+    border: 5px solid black;
     padding: 10px;
     margin: 20px;
+    border-radius: 50px;
+  }
+  img{
+    text-align: center;
+    margin-top: 50px;
   }
