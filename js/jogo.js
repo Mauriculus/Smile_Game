@@ -13,6 +13,7 @@ const imagemPinguimEl = document.getElementById("imagemPinguim"); // Cache a ref
 const audioRuim = document.getElementById("tiro");
 const audioBom = document.getElementById("moeda");
 
+
 //definição de funções
 
 function pararSom() {
@@ -21,10 +22,6 @@ function pararSom() {
 
   audioBom.pause();
   audioBom.currentTime = 0;
-
-  // Removido:
-  // musica.pause();
-  // musica.currentTime = 0;
 }
 
 function reiniciar() {
@@ -33,19 +30,17 @@ function reiniciar() {
   acertos = 0;
   moedas = 0;
   jogar = true;
-  jogarNovamente(); // Isso já redefine os divs e para o som
-  atualizaPlacar(acertos, tentativas); // Será 0 acertos, 0 tentativas
-  // pararSom(); // Já chamado em jogarNovamente
-  btnJogarNovamente.className = 'visivel'; // Ou remova 'invisivel'
+  jogarNovamente(); 
+  atualizaPlacar(acertos, tentativas);
+  btnJogarNovamente.className = 'visivel';
   btnReiniciar.className = 'invisivel';
   btnComprar.className = "invisivel";
-  imagemPinguimEl.className = "invisivel"; // Esconder pinguim ao reiniciar
+  imagemPinguimEl.className = "invisivel";
 }
 
 function jogarNovamente() {
   jogar = true;
   pararSom();
-  // let divis = document.getElementsByTagName("div"); // Melhor ser mais específico
   const divsClicaveis = document.querySelectorAll('#linha1 > div.inicial, #linha1 > div.acertou, #linha1 > div.errou');
 
   for (let i = 0; i < divsClicaveis.length; i++) {
@@ -53,19 +48,6 @@ function jogarNovamente() {
     div.className = "inicial";
     div.innerHTML = div.id; // Restaura o número original como conteúdo
   }
-
-  // Remover imagens não é mais necessário aqui se o innerHTML for resetado
-  // let imagem = document.getElementById("imagem");
-  // if (imagem != null) {
-  //   imagem.remove();
-  // }
-  // let imagemErro = document.getElementById("imagem-erro");
-  // if (imagemErro != null) {
-  //   imagemErro.remove();
-  // }
-
-  // Não precisa esconder o pinguim aqui, apenas no reiniciar ou se a lógica mudar
-  // imagemPinguimEl.className = "invisivel";
 }
 
 //atualizar placar
@@ -73,11 +55,11 @@ function atualizaPlacar(acertos, tentativas) {
   if (tentativas > 0) {
     desempenho = (acertos / tentativas) * 100;
   } else {
-    desempenho = 0; // Evitar divisão por zero
+    desempenho = 0;
   }
-  document.getElementById("resposta").innerHTML = "Placar - Acertos: " + acertos + " Tentativas: " + tentativas + " Desempenho: " + Math.round(desempenho) + "%" + " Moedas: " + moedas;
+  document.getElementById("resposta").innerHTML = "Placar - Acertos: " + acertos + " Tentativas: " + tentativas + " Desempenho: " + Math.round(desempenho) + "%" + " Moedas: 💲" + moedas;
   if (moedas >= 2) {
-    btnComprar.className = "visivel"; // Ou remova 'invisivel'
+    btnComprar.className = "visivel";
   } else {
     btnComprar.className = "invisivel";
   }
@@ -107,8 +89,7 @@ function comprarPinguim() {
   if (moedas >= 2) {
     moedas -= 2;
     atualizaPlacar(acertos, tentativas);
-    // const imagemPinguim = document.getElementById("imagemPinguim"); // Corrigido
-    imagemPinguimEl.className = "visivel"; // Ou remova 'invisivel'
+    imagemPinguimEl.className = "visivel";
   }
 }
 
@@ -118,12 +99,12 @@ function verifica(obj) {
     jogar = false;
     tentativas++;
     //checa pra ver se tem tentativas
-    if (tentativas >= 5) { // Use >= para garantir que pare em 5
+    if (tentativas >= 5) {
       btnJogarNovamente.className = 'invisivel';
-      btnReiniciar.className = 'visivel'; // Ou remova 'invisivel'
+      btnReiniciar.className = 'visivel';
     }
     //sorteia a carta
-    let sorteado = Math.floor(Math.random() * 5); // CORRIGIDO: sortear de 0 a 4
+    let sorteado = Math.floor(Math.random() * 5);
     
     if (obj.id == sorteado.toString()) { // Compare string com string (IDs são strings)
       //chama a função caso acertou
@@ -144,9 +125,9 @@ function verifica(obj) {
     atualizaPlacar(acertos, tentativas);
   } else {
     if (tentativas < 5) { // Só mostra o alerta se ainda pode jogar novamente
-        alert('Clique em "Jogar novamente"');
+        alert('Tem que clicar em jogar novamente seu panguão');
     } else {
-        alert('O jogo acabou! Clique em "Reiniciar" para começar de novo.');
+        alert('O jogo acabou e o pinguim fugiu pro matagal, vai atrás dele AGORA');
     }
   }
 }

@@ -1,48 +1,242 @@
-.invisivel{
-    display:none;
-  }
-  .visivel{
-    display:inline;
-  }
-  .inicial {
+/* Importa uma fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+body {
+    font-family: 'Nunito', sans-serif; /* Fonte mais amigável */
+    background: linear-gradient(to bottom right, #a0d2eb, #e5eaf5, #89c2d9); /* Gradiente azul claro "gelado" */
+    color: #333; /* Cor de texto padrão mais escura para contraste */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Garante que o gradiente preencha a tela */
+    margin: 0;
+    padding: 20px; /* Adiciona um pouco de padding geral */
+    box-sizing: border-box; /* Melhora o modelo de caixa */
+}
+
+#principal {
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente para o conteúdo */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra suave */
+    text-align: center; /* Centraliza o conteúdo dentro do principal */
+    max-width: 900px; /* Limita a largura máxima */
+    width: 100%;
+}
+
+h1 {
+    color: #006989; /* Azul escuro para o título */
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+p {
+    color: #4a4a4a; /* Cinza escuro para parágrafos */
+    font-size: 1.1em;
+    margin-bottom: 25px;
+}
+
+#linha1 .inicial {
     text-align: center;
-    font-size: 100px;
-    background-color: lightgrey;
-    width: 150px;
-    height: 200px;
-    border: 5px solid green;
+    font-size: 80px; /* Um pouco menor para caber melhor com a borda */
+    font-weight: 700;
+    color: #0077b6; /* Cor azul para o número */
+    background-color: #e0f7fa; /* Azul bem clarinho, como gelo */
+    width: 130px; /* Ajustado */
+    height: 180px; /* Ajustado */
+    border: 5px solid #48cae4; /* Borda azul média */
     padding: 10px;
-    margin: 20px;
-    border-radius: 50px;
-    transition: transform 0.3s ease;
-  }
-  .inicial:hover{
-    transform: translate(0px, -10px);
-  }
-  .acertou {
+    margin: 15px; /* Ajustado */
+    border-radius: 25px; /* Bordas mais arredondadas */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex; /* Para centralizar o número verticalmente */
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#linha1 .inicial:hover {
+    transform: translateY(-10px) scale(1.05); /* Efeito de levantar e aumentar um pouco */
+    background-color: #ade8f4; /* Azul um pouco mais escuro no hover */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.acertou {
     text-align: center;
-    color: yellow;
-    background-color: LawnGreen;
-    width: 150px;
-    height: 200px;
-    border: 5px solid yellow;
+    background-color: #90ee90; /* Verde claro para acerto */
+    color: #2e8b57; /* Verde escuro para texto (embora o font-size seja 0) */
+    width: 130px;
+    height: 180px;
+    border: 5px solid #3cb371; /* Borda verde média */
     padding: 10px;
-    margin: 20px;
-    border-radius: 50px;
-    font-size: 0px;
-  }
-  .errou {
+    margin: 15px;
+    border-radius: 25px;
+    font-size: 0px; /* Mantém o número escondido */
+    box-shadow: 0 0 20px #3cb371; /* Brilho verde ao acertar */
+    animation: pulseCorrect 0.5s ease-in-out;
+}
+
+@keyframes pulseCorrect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.errou {
     text-align: center;
-    font-size: 0px;
-    background-color: red;
-    width: 150px;
-    height: 200px;
-    border: 5px solid black;
+    font-size: 0px; /* Mantém o número escondido */
+    background-color: #ff6b6b; /* Vermelho claro para erro */
+    color: #c0392b; /* Vermelho escuro (embora o font-size seja 0) */
+    width: 130px;
+    height: 180px;
+    border: 5px solid #e74c3c; /* Borda vermelha escura */
     padding: 10px;
-    margin: 20px;
-    border-radius: 50px;
-  }
-  img{
+    margin: 15px;
+    border-radius: 25px;
+    box-shadow: 0 0 15px #e74c3c; /* Brilho vermelho ao errar */
+    animation: shakeError 0.4s ease-in-out;
+}
+
+@keyframes shakeError {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    75% { transform: translateX(-8px); }
+}
+
+#div1 { /* Container dos botões e resposta */
+    margin-top: 20px;
+    align-items: center; /* Alinha os botões verticalmente se estiverem em linha */
+}
+
+#resposta {
+    font-size: 1.2em;
+    font-weight: bold;
+    min-height: 1.5em; /* Para evitar que os botões pulem quando o texto aparece */
+    margin-bottom: 15px;
+}
+
+#div1 button {
+    background-color: #0077b6; /* Azul para botões */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin: 5px 10px; /* Espaçamento entre botões */
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#div1 button:hover {
+    background-color: #005f8b; /* Azul mais escuro no hover */
+    transform: translateY(-2px);
+}
+
+#div1 button:active {
+    transform: translateY(0px);
+}
+
+#joganovamente {
+    background-color: #5cb85c; /* Verde para "Jogar Novamente" */
+}
+#joganovamente:hover {
+    background-color: #4cae4c;
+}
+
+#comprar {
+    background-color: #f0ad4e; /* Laranja/Amarelo para "Comprar" */
+}
+#comprar:hover {
+    background-color: #ec971f;
+}
+
+
+img#imagemPinguim { /* Estilo para a imagem do pinguim */
     text-align: center;
-    margin-top: 35px;
-  }
+    margin-top: 25px; /* Ajustado */
+    border-radius: 15px; /* Bordas arredondadas para a imagem */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.invisivel {
+    display: none !important; /* !important para garantir que sobreponha o display:flex dos botões se necessário */
+}
+
+.visivel {
+    display: inline-block !important; /* Ou flex, dependendo do contexto do elemento */
+}
+
+/* Garante que botões invisíveis não ocupem espaço se forem flex items */
+#div1 button.invisivel {
+    display: none !important;
+}
+#div1 button.visivel {
+    display: inline-block !important; /* Para botões, inline-block é mais apropriado */
+}
+img.visivel {
+    display: block !important; /* Imagem é block por padrão, mas para garantir */
+    margin-left: auto; /* Para centralizar se for block */
+    margin-right: auto;
+}
+
+/* Ajustes para telas menores (Bootstrap já cuida de muito, mas podemos refinar) */
+@media (max-width: 768px) {
+    #linha1 .inicial {
+        width: 100px;
+        height: 150px;
+        font-size: 60px;
+        margin: 10px;
+    }
+    .acertou, .errou {
+        width: 100px;
+        height: 150px;
+        margin: 10px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    #principal {
+        padding: 20px;
+    }
+    #div1 button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+    img#imagemPinguim {
+        height: 300px; /* Reduz a altura do pinguim em telas menores */
+    }
+}
+
+@media (max-width: 576px) {
+    #linha1 .inicial {
+        width: 80px;
+        height: 120px;
+        font-size: 40px;
+        margin: 5px;
+        border-radius: 15px;
+    }
+    .acertou, .errou {
+        width: 80px;
+        height: 120px;
+        margin: 5px;
+        border-radius: 15px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    p {
+        font-size: 1em;
+    }
+    img#imagemPinguim {
+        height: 250px;
+    }
+    #div1 button {
+        width: 100%; /* Botões ocupam largura total e empilham */
+        margin: 8px 0;
+    }
+}
